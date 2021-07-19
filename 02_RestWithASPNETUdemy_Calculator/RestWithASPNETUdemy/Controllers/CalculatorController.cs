@@ -20,7 +20,7 @@ namespace RestWithASPNETUdemy.Controllers
         }
 
         [HttpGet("sum/{fristNumber}/{secondNumber}")]
-        public IActionResult Get(string fristNumber, string secondNumber)
+        public IActionResult Sum(string fristNumber, string secondNumber)
         {
             if (Isnumeric(secondNumber) && Isnumeric(fristNumber))
             {
@@ -29,6 +29,62 @@ namespace RestWithASPNETUdemy.Controllers
             }
             return BadRequest("Invalid input");
         }
+
+        [HttpGet("subtraction/{fristNumber}/{secondNumber}")]
+        public IActionResult Subtraction(string fristNumber, string secondNumber)
+        {
+            if (Isnumeric(secondNumber) && Isnumeric(fristNumber))
+            {
+                var sum = ConvertToDecimal(fristNumber) - ConvertToDecimal(secondNumber);
+                return Ok(sum.ToString());
+            }
+            return BadRequest("Invalid input");
+        }
+
+        [HttpGet("multiplication/{fristNumber}/{secondNumber}")]
+        public IActionResult Multiplication(string fristNumber, string secondNumber)
+        {
+            if (Isnumeric(secondNumber) && Isnumeric(fristNumber))
+            {
+                var sum = ConvertToDecimal(fristNumber) * ConvertToDecimal(secondNumber);
+                return Ok(sum.ToString());
+            }
+            return BadRequest("Invalid input");
+        }
+
+        [HttpGet("mean/{fristNumber}/{secondNumber}")]
+        public IActionResult Mean(string fristNumber, string secondNumber)
+        {
+            if (Isnumeric(secondNumber) && Isnumeric(fristNumber))
+            {
+                var mean = (ConvertToDecimal(fristNumber) * ConvertToDecimal(secondNumber))/2;
+                return Ok(mean.ToString());
+            }
+            return BadRequest("Invalid input");
+        }
+
+        [HttpGet("division/{fristNumber}/{secondNumber}")]
+        public IActionResult Division(string fristNumber, string secondNumber)
+        {
+            if (Isnumeric(secondNumber) && Isnumeric(fristNumber))
+            {
+                var division = (ConvertToDecimal(fristNumber) / ConvertToDecimal(secondNumber)) ;
+                return Ok(division.ToString());
+            }
+            return BadRequest("Invalid input");
+        }
+
+        [HttpGet("square-root/{fristNumber}")]
+        public IActionResult SquareRoot(string fristNumber)
+        {
+            if (Isnumeric(fristNumber))
+            {
+                var squareRoot = Math.Sqrt((double)ConvertToDecimal(fristNumber)) ;
+                return Ok(squareRoot.ToString());
+            }
+            return BadRequest("Invalid input");
+        }
+
 
         private bool Isnumeric(string strNumber)
         {
